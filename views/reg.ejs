@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>个人博客模板古典系列之――江南墨卷</title>
+    <meta name="keywords" content="个人博客模板古典系列之――江南墨卷" />
+    <meta name="description" content="个人博客模板古典系列之――江南墨卷" />
+    <link href="/public/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/reg.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/modernizr.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/public/static/jquery.min.js"></script>
+    <script type="text/javascript" charset="gbk">
+       window.UEDITOR_HOME_URL = "/public/static/";//编辑器项目路径
+    </script>
+     <!-- 配置文件 -->
+    <script type="text/javascript" src="/public/static/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/public/static/ueditor.all.min.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <header>
+            <div class="headtop"></div>
+             <nav>
+             <div class="contenttop">
+                <div  class="navigation">
+                  <ul class="menu">
+                    <li><a href="index.html">后台管理系统</a></li>
+                  </ul>
+                </div>
+                </div>
+            </nav>
+        </header>
+        <div class="jztop"></div>
+       
+        <div class="container mt20">
+            <div class="orderc" id="orderc" style="width:90%;margin:0 auto;">
+                <h2>orderc模块--文章编辑</h2>
+                <p class="til">
+                    <label>文章标题：
+                        <input type="text" placeholder="【心路历程】请不要在设计这条路上徘徊啦">
+                    </label>
+                </p>
+               <div id="container_orderc"></div>
+               <p>
+                   <button id="add_html">插入给定的内容</button>
+               </p>
+               <p class="pic">文章图片：
+                    <input class="imgxx"type="text" id="xcppp" placeholder="/public/images/img_1.jpg">
+                    <input class="add" type="button" value="+">
+                </p>
+                <p class="bl">
+                    <label>保留字段：<input type="text" placeholder="保留字段"></label>
+                </p>
+                <p class="fl">
+                    <label>分类：
+                        <select name="" id="fenlei">
+                            <option value="slowlife" selected="selected">慢生活</option>
+                            <option value="suiyansuiyu">碎言碎语</option>
+                            <option value="travel">旅游</option>
+                            <option value="learn">学无止境</option>
+                            <option value="huaijiu">怀旧</option>
+                            <option value="guanzhu">关注</option>
+                        </select>
+                    </label>
+                </p>
+                <p class="tags">
+                    <label>标签：
+                        <input type="text">
+                    </label>
+                </p>
+                <p class="atr">
+                    <label>作者：<input type="text" placeholder="徐超鹏"></label>
+                </p>
+                <p class="dat">
+                    <label>日期：<input type="text" placeholder="2018-02-28"></label>
+                </p>
+               <input class="submit" type="button" id="orderc_btn" value="提交">
+            </div>
+        </div>
+        <div class="container">
+            <div class="orderb" style="width:90%;margin:0 auto;" id="orderb">
+                <h2>orderb模块--音频编辑</h2>
+                <p class="gm">
+                    <label>歌名：
+                        <input type="text" placeholder="【心路历程】">
+                    </label>
+                </p>
+                <p class="yp">
+                    <label>音频源：
+                        <input type="text" placeholder="/public/static/video/**.mp3">
+                    </label>
+                </p>
+                <p class="tx">
+                    <label>头像截图：
+                        <input type="text" placeholder="/public/static/video/**.mp3">
+                    </label>
+                </p>
+                <p class="ms">
+                    <label>描述：<input type="text" placeholder="徐超鹏"></label>
+                </p>
+                <p class="lx">
+                    <label>类型：
+                        <select name="" id="audio_type">
+                            <option value="jingdian" selected="selected">经典</option>
+                            <option value="liuxing">流行</option>
+                            <option value="feijingdian">非经典</option>
+                        </select>
+                    </label>
+                </p>
+                <p class="dat">
+                    <label>日期：<input type="text" placeholder="2018-02-28"></label>
+                </p>
+                <p>
+                    <input type="button" value="提交" id="orderb_btn">
+                </p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="ordera" style="width:90%;margin:0 auto;" id="orderb">
+                <h2>ordera模块--权限管理区域</h2>
+                <div class="ordera_1">
+                    <p><input type="password" id="ordera_pass" placeholder="输入密码"><input type="button" id="ordera_submit" value="提交"></p>
+                    <p><span class="passy" style="display:none;">密码正确，已发送</span><span class="passn" style="display:none;">密码错误!!!</span><span class="passf" style="display:none;">服务器错误,刷新再试下！</span></p>
+                </div>
+            </div>
+        </div>
+        <!-- container代码 结束 -->
+        <div class="jzend"></div>
+        <footer>
+            <div class="footer">
+                <div class="f_l">
+                    <p>All Rights Reserved 版权所有：<a href="http://www.yangqq.com"> 徐超鹏个人博客</a> 备案号: f769a318-3349-49c2-b1f7-b5e488b9e476</p>
+                </div>
+                <div class="f_r textr">
+                    <p>Design by P.xc</p>
+                </div>
+            </div>
+        </footer>
+        <script type="text/javascript">
+        //mima区域
+        (function(){
+            var password = '';
+            var $submit = $('#ordera_submit'),
+                $pass = $('#ordera_pass'),
+                $passy = $('.passy'),
+                $passn = $('.passn'),
+                $passf = $('.passf');
+            var lock = false;
+            $submit.on('click',function(){
+                if(lock)return;
+                lock = true;
+                $.ajax({
+                    type:'GET',
+                    url:'/statics/refresh',
+                    data:{
+                        password:$pass.val()
+                    },
+                    success:function(res){
+                        if(res.status === '1'){
+                            $passy.show();
+                            $passn.hide();
+                        }else{
+                            lock = false;
+                            $passy.hide();
+                            $passn.show();
+                        }
+                    },error:function(){
+                        lock = false;
+                        $passf.show();
+                    }
+                })
+            });
+        })();
+        //编辑器 模块c
+        (function(){
+            var $orderc = $('#orderc'),
+                $title = $orderc.find('p.til input'),
+                $pic = $orderc.find('p.pic input'),
+                $bl = $orderc.find('p.bl input'),
+                $fl = $orderc.find('p.fl select'),
+                $tags = $orderc.find('p.tags input'),
+                $atr = $orderc.find('p.atr input'),
+                $dat = $orderc.find('p.dat input');
+            var ue = UE.getEditor('container_orderc');
+            $('#add_html').on('click',function(){
+                var value = prompt('插入html代码', '<img src="" alt="" />');
+                ue.execCommand('insertHtml', value);
+            });
+            $('p .add').on('click',function(){
+                $('.pic').after('<p class="add_pic">●●●●●● ：<input class="imgxx" type="text" placeholder="/public/images/img_1.jpg"><input class="lose" type="button" value="-"></p>');
+            });
+            $('#orderc').on('click','.lose',function(){
+               var $this = $(this);
+               var $parent = $this.parent('.add_pic');
+               if($parent.length !== 0){
+                  $parent.remove();
+               }
+            });
+            //处理多张图片信息
+            var dealImages = function($doms){
+                var a = '';
+                $doms.each(function(i,item){
+                    if(item.value){
+                        a += item.value + '&&&';
+                    }
+                });
+                return a.replace(/\&\&\&$/g,'');
+            }
+            $('#orderc_btn').on('click',function(){
+                ue.ready(function(){
+                    //获取纯文本内容
+                    // var html = ue.getContentTxt();
+                    //获取带格式的存文本内容
+                    // var html = ue.getPlainTxt();
+                    // 获得内容
+                    var html = ue.getContent();
+                    var imgArray = dealImages($('.imgxx'));
+                    console.log(imgArray);
+                    $.ajax({
+                        type:'post',
+                        url:'/statics/add',
+                        data:{
+                            title:$title.val(),
+                            discription:html,
+                            imgurl:imgArray,
+                            keepword:$bl.val(),
+                            type:$fl.val(),
+                            tags:$tags.val(),
+                            author:$atr.val(),
+                            date:$dat.val()
+                        },
+                        success:function(data){
+                           if(data.status === '1'){
+                                alert('ok');
+                           }
+                        },
+                        error:function(){}
+                   });
+                });
+            });
+        })();
+        //模块b
+        (function(){
+            var $orderb = $('#orderb'),
+                $gm = $orderb.find('p.gm input'),
+                $yp = $orderb.find('p.yp input'),
+                $tx = $orderb.find('p.tx input'),
+                $ms = $orderb.find('p.ms input'),
+                $fl = $orderb.find('#audio_type'),
+                $dat = $orderb.find('p.dat input');
+            $('#orderb_btn').on("click",function(){
+               $.ajax({
+                    type:'post',
+                    url:'/statics/add/audio',
+                    data:{
+                        name:$gm.val(),
+                        source:$yp.val(),
+                        imgurl:$tx.val(),
+                        discription:$ms.val(),
+                        type:$fl.val(),
+                        date:$dat.val()
+                    },
+                    success:function(data){
+                       if(data === '1'){
+                            alert('ok');
+                       }
+                    },
+                    error:function(){}
+               });
+            });
+        })();
+        </script>
+    </div>
+</body>
+
+</html>

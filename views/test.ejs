@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>播放器</title>
+    <link href="http://mini.eastday.com/assets/images/favicon.ico" type="image/x-icon" rel="icon"/>
+</head>
+<body>
+    <div style="margin:0;padding:0;width:670px;height:300px;">
+        <video id="xcp" src="/public/static/video/0312_sh.mp4" autoplay height="300px" width="670px" loop muted webkit-playsinline="true"></video>
+    </div>
+    <script type="text/javascript">
+        var hasVideo = !!(document.createElement('video').canPlayType);
+        if(hasVideo){
+            alert('是支持video的');
+        }else{
+            alert('不支持video的');
+        }
+    </script>
+</body>
+</html>

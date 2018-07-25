@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>尚客</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/public/images/favicon.ico?v=1.0.0" />
+    <link rel="stylesheet" href="/public/css/reset.css" />
+    <link rel="stylesheet" href="/public/css/index.css" />
+    <script type="text/javascript" src="/public/static/jquery.min.js"></script>
+    <script type="text/javascript" src="/public/js/juicer.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="headband"></div>
+        <div class="inner clearfix">
+            <div class="header">
+                <div class="header-inner">
+                    <div class="site-brand">
+                        <div class="site-meta">
+                            <div class="site-log">
+                                <a class="brand" href="/">
+                                  <span class="site-title">XuchaoPeng</span>
+                                </a>
+                            </div>
+                            <p class="site-subtitle">
+                                Quick blog
+                            </p>
+                        </div>
+                    </div>
+                    <nav class="site-nav">
+                        <ul class="menu">
+                            <li class="menu-item"><a href="/"><span><i class="menu-icon h"></i>首页</span></a></li>
+                            <li class="menu-item"><a href="/archive"><span><i class="menu-icon g"></i>归档</span></a></li>
+                            <li class="menu-item"><a href="/article-class"><span><i class="menu-icon b"></i>分类</span></a></li>
+                            <li class="menu-item"><a href="/"><span><i class="menu-icon s"></i>搜索</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="main">
+                <div class="content" id="content">
+                    <section class="posts" id="posts">
+                   
+                    </section>
+                </div>
+            </div>
+            <div class="aside">
+                <div class="aside_inner">
+                    <section>
+                        <div class="site_author">
+                            <img src="/public/images/01.jpg" alt="">
+                            <p class="site_author_name">XuchaoPeng</p>
+                            <p class="site_author_dis">胡编一通，乱写一气</p>
+                        </div>
+                        <nav class="site_nav">
+                            <div class="site_nav_item">
+                            <a href="/archive" target="_blank">
+                              <span class="nav_item_count">--</span>
+                              <span class="nav_item_name">Logs</span>
+                            </a>
+                            </div>
+                            <div class="site_nav_item">
+                                <a href="/article-class" target="_blank">
+                                  <span class="nav_item_count">--</span>
+                                  <span class="nav_item_name">Fenl</span>
+                                </a>
+                            </div>
+                            <div class="site_nav_item">
+                                <a href="/about" target="_blank">
+                                  <span class="nav_item_count">--</span>
+                                  <span class="nav_item_name">About</span>
+                                </a>
+                            </div>
+                        </nav>
+                        <div class="site_link clearfix">
+                            <a href="https://github.com/" target="_blank"><i></i>GitHub</a>
+                            <a href="https://gitee.com/xuchaopeng" target="_blank"><i></i>码云</a>
+                            <a href="https://www.zhihu.com/" target="_blank"><i></i>知乎</a>
+                            <a href="http://ueditor.baidu.com/website/onlinedemo.html" target="_blank"><i></i>Collect</a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="inner footer">
+            <p> © 2011 - 2017 <span class="icon_p"></span> P.xc</p>
+        </div>
+    </div>
+    <script type="text/template" id="template">
+    {@each results as data,index}
+        <article class="posts_item">
+            <h1 class="post_title"><a href="/detail/num/${data.accid}" target="_blank">${data.title}</a></h1>
+            <div class="post_meta">
+                <span class="post_time">
+                  <span class="post_time_txt"><i></i>发表于</span>
+                  <time datetime="">${data.date}</time>
+                </span>
+                <span class="post_leibei">
+                  <span class="post_divider">|</span>
+                  <span class="post_time_txt"><i></i>分类于</span>
+                  <span class="post_about"><a href="/article-class/${data.type}" target="_blank">${data.type}</a></span>
+                </span>
+                <span class="post_counts">
+                  <span class="post_divider">|</span>
+                  <span class="post_time_txt"><i></i>阅读次数</span>
+                  <span class="post_num">${data.readtimes}</span>
+                </span>
+            </div>
+            <div class="psots_body">${data.discription ? data.discription :'哈哈，描述走丢了'}<div class="post_button"><a class="btn" href="/detail/num/${data.accid}" target="_blank">阅读全文>></a></div>
+            </div>
+            <div class="posts_bottom">
+                <div class="post_eof">
+                </div>
+            </div>
+        </article>
+    {@/each}
+    </script>
+    <script type="text/javascript">
+    var Tools = {
+        //初始化参数
+        initParam:function(){
+            Islockscroll = false;
+            Paramdata = {
+                pagenum:0,
+                acc_id:''
+            }
+        },
+        //左侧悬浮功能
+        leftFloat:function(){
+            var $aside = $('.aside'),$cnt = $('.aside_inner'),$window = $(window);
+            $window.on('scroll',function(event){
+                event.preventDefault();
+                var t = $aside.offset().top,s = $window.scrollTop();
+                if(t <= s && $window.width() >= 1000){
+                    $cnt.addClass('aside_fixed');
+                }else{
+                    $cnt.removeClass('aside_fixed');
+                }
+            });
+            $window.on('resize',function(){
+                if($window.width() < 1000){
+                    $cnt.removeClass('aside_fixed');
+                }
+            });
+        },
+        //背景音乐播放
+        playVideo:function(){
+            var $body = $('body');
+            $.ajax({
+                type:'GET',
+                url:'/statics/audio',
+                dataType:'json',
+                success:function(res){
+                    if(res.status !== '1')return;
+                    var data = res.data;
+                    var len = data.length;
+                    var index = parseInt(Math.random()*len);
+                    if(len === 0)return;
+                    $body.append('<audio id="audio" src="'+data[index].source+'" loop="loop" autoplay="autoplay"><\/audio>');
+                    if($('#audio').length === 1){
+                        var lock = false;
+                        $body[0].addEventListener('touchstart',function(){
+                            if(lock)return;
+                            $('#audio')[0].play();
+                        });
+                    }
+                },
+                error:function(){}
+            });
+        },
+        //动态加载新闻
+        loadArticle:function(){
+            Islockscroll = true;
+            $.ajax({
+                type:'GET',
+                url:'/statics/articlebypage',
+                data:Paramdata,
+                dataType:'json',
+                success:function(res){
+                    if(res.status !== '1')return;
+                    var len = res.data.length;
+                    var dom = juicer($('#template').html(),{
+                        results:res.data
+                    });
+                    $('#posts').append(dom);
+                    //写入文章总数
+                    if(Paramdata.pagenum === 0){
+                        try{
+                            $('.site_nav .nav_item_count').each(function(i,item){
+                                if(i === 0){$(item).html(res.allnumber);}
+                                if(i === 1){$(item).html(res.types.length);}
+                            });
+                        }catch(e){}
+                    }
+                    if(len >= 8){
+                        Paramdata.pagenum += 1;
+                        Paramdata.acc_id = res.data[len - 1]._id;
+                        Islockscroll = false;
+                    }
+                },error:function(){}
+            });
+        },
+        scrollBottom:function(){
+            var _this = this;
+            var $cnt = $('#posts');
+            _this.loadArticle();
+            $(window).on('scroll',function(){
+                var st = $(window).scrollTop(),wh = $(window).height(),of =  $cnt.offset().top,oh =  $cnt.outerHeight(true);
+                if(!Islockscroll && st + wh + 300 > of + oh){
+                    _this.loadArticle();
+                }
+            });
+        },
+        init:function(){
+            this.initParam();
+            this.scrollBottom();
+            this.leftFloat();
+            this.playVideo();
+        }
+    }
+    Tools.init();
+    </script>
+</body>
+
+</html>

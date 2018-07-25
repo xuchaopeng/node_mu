@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1; user-scalable=no;">
+    <title>徐超鹏-blog</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/public/images/favicon.ico?v=1.0.0" />
+    <link rel="stylesheet" type="text/css" href="/public/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/index_mobile.css">
+    <script type="text/javascript" src="/public/js/zepto.min.js"></script>
+    <script type="text/javascript" src="/public/js/tppl.js"></script>
+    <script type="text/javascript" src="/public/js/mobile_index.js"></script>
+</head>
+<body>
+    <div class="pubu_cnt">
+        <div class="cover_right"><i></i></div>
+        <div class="cover_inner">
+            <div class="ci_logo"><div class="lo"></div></div>
+            <div class="ci_ms">慢点，陪你做生活的设计师</div>
+            <div class="ci_search" id="ci_search">
+                <div class="search_cnt"><input  type="text" placeholder="你在想什么呢"><i></i></div>
+            </div>
+        </div>
+        <div class="cover_bottom">
+            <div class="cover_swipe">
+            </div>
+        </div>
+    </div>
+    <header class="header">
+    	<div class="header_top">
+    		<div class="pwz">
+    			<a href="javascript:;"></a>发现
+    		</div>
+            <div class="psh">
+                <div class="pss">
+                    <a id="btn_ss" href="javascript:;"></a>
+                </div>
+                <div class="phm">
+                    <a href="javascript:;"></a>
+                </div>
+            </div>
+            <input class="psearch" type="text" value="">
+            <a class="cancle" href="javascript:;"><i></i></a>
+    	</div>
+    	<div class="header_bom">
+    		<div class="nav_button">
+    			<span class="nav_btn" id="nav_btn"></span>
+    		</div>
+    		<ul class="nav_cnt">
+    			<li><a href="/">首页</a></li>
+    			<li><a href="/">生活笔记</a></li>
+    			<li><a href="/">慢生活</a></li>
+    			<li><a href="/">爱的抱抱</a></li>
+    		</ul>
+    	</div>
+    </header>
+    <div class="title_both mtop">小生活</div>
+    <div class="top_nav">
+        <ul class="nav_lists">
+            <li class="nav_item"><a href="/mobile/channel?type=slowlife"><span class="cat_title">慢生活</span></a></li>
+            <li class="nav_item"><a href="/mobile/channel?type=suiyansuiyu"><span class="cat_title">碎言碎语</span></a></li>
+            <li class="nav_item"><a href="/mobile/channel?type=travel"><span class="cat_title">旅游</span></a></li>
+            <li class="nav_item"><a href="/mobile/channel?type=learn"><span class="cat_title">学无止境</span></a></li>
+            <li class="nav_item"><a href="/mobile/channel?type=huaijiu"><span class="cat_title">怀旧</span></a></li>
+            <li class="nav_item"><a href="/mobile/channel?type=guanzhu"><span class="cat_title">关注</span></a></li>
+        </ul>
+    </div>
+    <div class="title_both">为您推荐</div>
+    <div class="content" id="content">
+    </div>
+    <script type="text/template" id="template">
+    [: if(imgurl.length  >= 3) { :]
+        <section class="news_item">
+            <div class="news_wrap">
+                <h3><a href="/mobile/detail/[=:accid:]">[=: title :]</a></h3>
+                <div class="img_wrap">
+                    <div class="img">
+                        <img src="[=:imgurl[0].url:]" alt="">
+                    </div>
+                    <div class="img">
+                        <img src="[=:imgurl[1].url:]" alt="">
+                    </div>
+                    <div class="img">
+                        <img src="[=:imgurl[2].url:]" alt="">
+                    </div>
+                </div>
+                <p>[=:author:]  [=:date:]</p>
+            </div>
+        </section>
+    [: } else if(imgurl.length >= 1) { :]
+        <section class="news_item">
+            <div class="news_cnt">
+                <div class="rg">
+                    <h3><a href="/mobile/detail/[=:accid:]">[=: title :]</a></h3>
+                    <p>[=: author :]  [=:date:]</p>
+                </div>
+                <div class="fl">
+                    <img src="[=: imgurl[0].url :]" alt="">
+                </div>
+            </div>
+        </section>
+    [: } else { :]
+        <section>
+            <div class="news_wrap">
+                <h3><a href="/mobile/detail/[=:accid:]">[=: title :]</a></h3>
+                <p>[=: author :]   [=:date:]</p>
+            </div>
+        </section>
+    [: } :]
+    </script>
+    <div class="footer-inner">
+        <div class="footer_cnt">
+            <a href="/">个人博客基于Mongdb + NodeJs搭建</a><br>
+            <a href="/"> Designed and developed by xuchaopeng </a><br>
+            <a href="/">Copyright © 2018-2018 All Rights Reserved</a><br>
+        </div>
+    </div>
+</body>
+</html>

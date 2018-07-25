@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>叶子</title>
+		<link rel="shortcut icon" type="image/x-icon" href="/public/images/favicon.ico?v=1.0.0" />
+		<link rel="stylesheet" href="/public/css/reset.css" />
+		<script type="text/javascript">
+	    document.write('<link rel="stylesheet" href="/public/css/article-class.css?' + (new Date().getTime()) + '" \/>')
+	    </script>
+    	<script type="text/javascript" src="/public/static/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+        <div class="headband"></div>
+        <div class="inner clearfix">
+            <div class="header">
+                <div class="header-inner">
+                    <div class="site-brand">
+                        <div class="site-meta">
+                            <div class="site-log">
+                                <a class="brand" href="/">
+                                  <span class="site-title">XuchaoPeng</span>
+                                </a>
+                            </div>
+                            <p class="site-subtitle">
+                                Quick blog
+                            </p>
+                        </div>
+                    </div>
+                    <nav class="site-nav">
+                        <ul class="menu">
+                            <li class="menu-item"><a href="/"><span><i class="menu-icon h"></i>首页</span></a></li>
+                            <li class="menu-item"><a href="/archive"><span><i class="menu-icon g"></i>归档</span></a></li>
+                            <li class="menu-item active"><a href="/article-class"><span><i class="menu-icon b"></i>分类</span></a></li>
+                            <li class="menu-item"><a href="/"><span><i class="menu-icon s"></i>搜索</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="main">
+                <div class="content" id="content">
+                	<section id="posts" class="posts_content">
+                		<div class="category_all">目前共计 <%=data.length%> 个分类</div>
+                		<div>
+                			<ul class="category_list">
+                                <% var xcp = 0 ; %>
+                				<% for(var i = 0 ; i < data.length ; i++) { %>
+                				<li class="category_item"><a href="/article-class/<%=data[i].type%>"><%=data[i].name%></a><span><%=data[i].alltotal%></span></li>
+                                    <% xcp += data[i].alltotal%>
+                				<% } %>
+                                <li id="last_category_item" class="category_item" style="display:none;" data-alltotal=<%=xcp%>></li>
+                			</ul>
+                		</div>
+                	</section>
+                </div>
+            </div>
+            <div class="aside">
+                <div class="aside_inner">
+                    <section>
+                        <div class="site_author">
+                            <img src="/public/images/01.jpg" alt="">
+                            <p class="site_author_name">XuchaoPeng</p>
+                            <p class="site_author_dis">胡编一通，乱写一气</p>
+                        </div>
+                        <nav class="site_nav">
+                            <div class="site_nav_item">
+                                <a href="/archive">
+                                  <span class="nav_item_count" id="rzhi_num">--</span>
+                                  <span class="nav_item_name">Logs</span>
+                                </a>
+                            </div>
+                            <div class="site_nav_item">
+                                <a href="/article-class">
+                                  <span class="nav_item_count"><%=data.length%></span>
+                                  <span class="nav_item_name">Fenl</span>
+                                </a>
+                            </div>
+                            <div class="site_nav_item">
+                                <a href="/about" target="_blank">
+                                  <span class="nav_item_count">--</span>
+                                  <span class="nav_item_name">About</span>
+                                </a>
+                            </div>
+                        </nav>
+                        <div class="site_link clearfix">
+                            <a href="https://github.com/" target="_blank"><i></i>GitHub</a>
+                            <a href="https://gitee.com/xuchaopeng" target="_blank"><i></i>码云</a>
+                            <a href="https://www.zhihu.com/" target="_blank"><i></i>知乎</a>
+                            <a href="http://ueditor.baidu.com/website/onlinedemo.html" target="_blank"><i></i>Collect</a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="inner footer">
+            <p> © 2011 - 2017 <span class="icon_p"></span> P.xc</p>
+        </div>
+        <script type="text/javascript">
+            $rzhi = $('#rzhi_num');
+            $rzhi.html($('#last_category_item').attr('data-alltotal'));
+        </script>
+    </div>
+    </div>
+	</body>
+	</html>	

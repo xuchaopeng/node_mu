@@ -1,0 +1,118 @@
+div.container{
+	height: auto;
+}
+th {
+    height: 50px;
+    font-size: 16px;
+}
+th{
+	text-align:center;
+}
+.mt20{
+	margin-top: 20px;
+}
+.ordera h2{
+	font-size:16px;
+	line-height: 30px;
+}
+
+.orderb p::after{
+	content: "";
+	display: block;
+	width:100%;
+	height:20px;
+}
+.orderb h2{
+	font-size:16px;
+	line-height: 30px;
+}
+.orderb input[type=text]{
+	font-size:14px;
+	line-height: 20px;
+	width:500px;
+	height: 25px;
+}
+.orderb input[type=button]{
+	font-size:14px;
+	line-height: 20px;
+	width:100px;
+	height: 25px;
+}
+.orderc{
+	width:100%;
+	padding-bottom:40px;
+	position: relative;
+}
+.orderc h2{
+	font-size:16px;
+	line-height: 30px;
+}
+.orderc #container_orderc{
+	width:100%;
+}
+.orderc p.til{
+	padding-bottom: 20px;
+}
+.orderc p.pic{
+	position: relative;
+}
+.orderc p.pic .add{
+	position: absolute;
+    right: 130px;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.orderc p.add_pic{
+	position: relative;
+}
+.orderc p.add_pic .lose{
+	position: absolute;
+    right: 130px;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.orderc p.add_pic{
+	margin-top: 0;
+	padding-top: 0;
+}
+.orderc p{
+	padding-top: 20px;
+}
+.orderc input[type=text]{
+	font-size: 14px;
+    line-height: 20px;
+    width: 500px;
+    height: 25px;
+}
+.orderc select{
+	width:120px;
+	line-height: 28px;
+	height:28px;
+	text-align: center;
+}
+.orderc .submit{
+	position: absolute;
+	bottom:0;
+	left:0;
+	font-size: 14px;
+    line-height: 20px;
+    width: 100px;
+    height: 25px;
+}
+/*ordera start*/
+.ordera_1 p{
+	position: relative;
+}
+#ordera_submit{
+	position: absolute;
+	left:200px;
+	top:2px;
+	font-size: 14px;
+    line-height: 20px;
+    width: 100px;
+    height: 25px;
+}
