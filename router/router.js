@@ -4,6 +4,7 @@ var ArticleClass = require("../models/ArticleClass.js");
 var Audio = require("../models/Audio.js");
 var Tools = require("../models/Tools.js");
 var formidable = require('formidable');
+var axios = require('axios');
 
 //初始化所有的分类
 exports.allType = function() {
@@ -474,4 +475,22 @@ exports.checkArticleByPage = function(req,res){
             });
         });
     });
+}
+//音乐播放器代理接口
+exports.recommendJk = function(req,res){
+    var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+    axios.get(url, {
+      headers: {
+        referer: 'https://c.y.qq.com/',
+        host: 'c.y.qq.com'
+      },
+      params: req.query
+    }).then((response) => {
+      res.json(response.data)
+    }).catch((e) => {
+      res.json('error')
+    })
 }

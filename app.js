@@ -20,6 +20,8 @@ app.get("/archive",router.showArchive); // 显示归档页
 app.get("/article-class",router.showArticleClass); // 显示总分类页
 app.get("/article-class/:id",router.showFenLei); //显示分类页
 app.get('/reptile',router.detalJiekou_v1);
+//音乐播放器代理接口
+app.get('/api/getDiscList',router.recommendJk);
 //15分钟爬取一次
 setTimeout(function(){
 	router.detalJiekou();
