@@ -46,7 +46,8 @@ app.get("/statics/article-base/:type",router.doBaseByType); // 根据type获取�
 app.get("/statics/article-class",router.doClass); // 文章分类信息外放接口 一次8条
 app.post("/statics/add/audio",router.doAddAudio); //音频播放源编辑接口
 app.get("/statics/audio",router.doAudio); //音频播放源外放接口
-
+//测试
+app.get("/statics/article-type",router.checkArticleByType);
 //刷新文章分类 数据库
 app.get('/statics/refresh',router.doRefresh); // 刷新数据库 
 app.get("/detail/num/:id",router.showArticle); // 显示文章页

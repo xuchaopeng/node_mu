@@ -37,6 +37,14 @@ articleSchema.statics.fetch = function(id,callback){
         this.find().limit(8).sort({'_id':-1}).exec(callback);
     }
 }
+//分类型  分页检索数据库
+articleSchema.statics.fetchByType = function(id,callback){
+    if(id){
+        this.find({'_id':{'$lt':id}}).where('type','slowlife').limit(2).exec(callback)
+    }else{
+        this.find().where('type','slowlife').limit(2).exec(callback)
+    }
+}
 //创建类
 var Article = mongoose.model("article",articleSchema);
 //向外暴露

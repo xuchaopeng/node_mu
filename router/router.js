@@ -476,6 +476,19 @@ exports.checkArticleByPage = function(req,res){
         });
     });
 }
+exports.checkArticleByType = function(req,res){
+    var _id = req.query.acc_id;
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+    Article.fetchByType(_id,function(err,results){
+        if(err){
+            res.json({'status': '1', 'prompt': '数据检索失败'})
+            return;
+        }
+        res.json({'status': '1', 'prompt': 'success',data:results})
+    })
+}
 //音乐播放器代理接口
 exports.recommendJk = function(req,res){
     var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
