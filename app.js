@@ -23,12 +23,12 @@ app.get('/reptile',router.detalJiekou_v1);
 //音乐播放器代理接口
 app.get('/api/getDiscList',router.recommendJk);
 //15分钟爬取一次
-setTimeout(function(){
-	router.detalJiekou();
-},2000);
-setInterval(function(){
-	router.detalJiekou();
-},1000*60*15);
+// setTimeout(function(){
+// 	router.detalJiekou();
+// },2000);
+// setInterval(function(){
+// 	router.detalJiekou();
+// },1000*60*15);
 //手机端路由清单
 app.get("/mobile",router.showMindex); // 手机端首页
 app.get('/mobile/search',router.showSearch); // 手机端搜索页
@@ -48,10 +48,12 @@ app.post("/statics/add/audio",router.doAddAudio); //音频播放源编辑接口
 app.get("/statics/audio",router.doAudio); //音频播放源外放接口
 //测试
 app.get("/statics/article-type",router.checkArticleByType);
+app.get("/statics/change/data",router.changeData);
+app.get("/statics/change/class",router.changeClass);
 //刷新文章分类 数据库
-app.get('/statics/refresh',router.doRefresh); // 刷新数据库 
+app.get('/statics/refresh',router.doRefresh); // 刷新数据库
 app.get("/detail/num/:id",router.showArticle); // 显示文章页
 //静态资源
 app.use("/public",express.static("public"));
 //监听
-app.listen(8090);
+app.listen(80);

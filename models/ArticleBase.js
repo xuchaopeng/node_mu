@@ -35,6 +35,14 @@ articleBaseSchema.statics.fetch = function(id,callback){
         this.find().limit(8).sort({'_id':-1}).exec(callback);
     }
 }
+//分类型  分页检索数据库
+articleBaseSchema.statics.fetchByType = function(id,type,callback){
+    if(id){
+        this.find({'_id':{'$lt':id}}).where('type',type).limit(10).exec(callback)
+    }else{
+        this.find().where('type',type).limit(10).exec(callback)
+    }
+}
 //创建类
 var ArticleBase = mongoose.model("articlebase",articleBaseSchema);
 //向外暴露

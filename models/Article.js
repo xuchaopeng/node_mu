@@ -38,11 +38,11 @@ articleSchema.statics.fetch = function(id,callback){
     }
 }
 //分类型  分页检索数据库
-articleSchema.statics.fetchByType = function(id,callback){
+articleSchema.statics.fetchByType = function(id,type,callback){
     if(id){
-        this.find({'_id':{'$lt':id}}).where('type','slowlife').limit(2).exec(callback)
+        this.find({'_id':{'$lt':id}}).where('type',type).limit(2).exec(callback)
     }else{
-        this.find().where('type','slowlife').limit(2).exec(callback)
+        this.find().where('type',type).limit(2).exec(callback)
     }
 }
 //创建类

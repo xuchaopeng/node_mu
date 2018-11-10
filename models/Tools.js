@@ -6,10 +6,46 @@ var cheerio = require('cheerio');
 var request = require('request');
 
 //转type
-var getZhType =  function(type){
-    var i = parseInt(Math.random()*7);
-    var typestr = 'slowlife|suiyansuiyu|travel|learn|huaijiu|guanzhu|other';
-    return typestr.split('|')[i];
+var getZhType =  function(name){
+    var all = {'yule': '娱乐频道',
+        'toutiao': '推荐',
+        'junshi': '军事频道',
+        'shipin': '视频频道',
+        'shehui': '社会频道',
+        'keji': '科技频道',
+        'tiyu': '体育频道',
+        'qiche': '汽车频道',
+        'caijing': '财经频道',
+        'jiankang': '健康频道',
+        'redian': '热点频道',
+        'guonei': '国内频道',
+        'guoji': '国际频道',
+        'shishang': '时尚频道',
+        'lishi': '历史频道',
+        'youxi': '游戏频道',
+        'qinggan': '情感频道',
+        'jiaju': '家居频道',
+        'xingzuo': '星座频道',
+        'kexue': '科学频道',
+        'hulianwang': '互联网频道',
+        'shuma': '数码频道',
+        'waihui': '外汇频道',
+        'gupiao': '股票频道',
+        'qihuo': '期货频道',
+        'jijin': '基金频道',
+        'licai': '理财频道',
+        'dianying': '电影频道',
+        'dianshi': '电视频道',
+        'zongyi': '综艺频道',
+        'bagua': '八卦频道',
+        'other':'其它'}
+    var type = 'other';
+    for(var k in all){
+        if(all[k] === name){
+            type = k;
+        }
+    }
+    return type
 }
 //生产uk的方法
 exports.madeuk = function() {
@@ -233,7 +269,7 @@ exports.detalPage = function(url,fn) {
             "readtimes": 0,
             "date": date,
             "tag": tagStr,
-            "type": getZhType(),
+            "type": getZhType(aName),
             "name": aName,
             "ukArry":getPages(ukArry)
         }

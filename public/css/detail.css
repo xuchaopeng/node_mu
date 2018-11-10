@@ -144,6 +144,7 @@ body{
 	float: right;
     box-sizing: border-box;
     padding: 40px;
+    padding-top:25px;
     width: 740px;
     background: #fff;
     min-height: 700px;
@@ -159,7 +160,6 @@ body{
     text-align: center;
     word-break: break-word;
     font-weight: 400;
-    height:45px;
 }
 .post_title a{
 	display: inline-block;
@@ -215,7 +215,6 @@ body{
 .post_meta .post_time_txt{
 	position: relative;
 	padding-left: 15px;
-	
 }
 .post_meta .post_time_txt i{
 	position: absolute;

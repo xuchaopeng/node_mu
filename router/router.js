@@ -8,7 +8,7 @@ var axios = require('axios');
 
 //初始化所有的分类
 exports.allType = function() {
-        var typedata = ['slowlife', 'suiyansuiyu', 'travel', 'learn', 'huaijiu', 'guanzhu', 'other'];
+        var typedata = ["yule", "toutiao", "junshi", "shipin", "shehui", "keji", "tiyu", "qiche", "caijing", "jiankang", "redian", "guonei", "guoji", "shishang", "lishi", "youxi", "qinggan", "jiaju", "xingzuo", "kexue", "hulianwang", "shuma", "waihui", "gupiao", "qihuo", "jijin", "licai", "dianying", "dianshi", "zongyi", "bagua","youmo","sex","other"];
         var reCheck = function(typedata) {
             ArticleClass.checkSelf(typedata[0], function(err, br) {
                 if (err) return;
@@ -419,7 +419,7 @@ exports.doBaseByType = function(req, res) {
         res.json({ 'status': '1', 'data': results, 'name': Tools.getNameByType(type), 'prompt': 'success' });
     });
 }
-//get 外放文章分类接口 
+//get 外放文章分类接口
 exports.doClass = function(req, res) {
     ArticleClass.find({}, function(err, results) {
         var data = {};
@@ -476,12 +476,14 @@ exports.checkArticleByPage = function(req,res){
         });
     });
 }
+//按照type外放文章信息接口 一次2条
 exports.checkArticleByType = function(req,res){
     var _id = req.query.acc_id;
+    var _type = req.query.type;
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-    Article.fetchByType(_id,function(err,results){
+    ArticleBase.fetchByType(_id,_type,function(err,results){
         if(err){
             res.json({'status': '1', 'prompt': '数据检索失败'})
             return;
@@ -489,6 +491,142 @@ exports.checkArticleByType = function(req,res){
         res.json({'status': '1', 'prompt': 'success',data:results})
     })
 }
+//更改数据库操作
+exports.changeData = function(req,res){
+    var xcp = {
+        'other':'其它',
+        'toutiao': '推荐',
+        'junshi': '军事频道',
+        'shipin': '视频频道',
+        'shehui': '社会频道',
+        'yule': '娱乐频道',
+        'keji': '科技频道',
+        'tiyu': '体育频道',
+        'qiche': '汽车频道',
+        'caijing': '财经频道',
+        'jiankang': '健康频道',
+        'redian': '热点频道',
+        'guonei': '国内频道',
+        'guoji': '国际频道',
+        'shishang': '时尚频道',
+        'lishi': '历史频道',
+        'youxi': '游戏频道',
+        'qinggan': '情感频道',
+        'jiaju': '家居频道',
+        'xingzuo': '星座频道',
+        'kexue': '科学频道',
+        'hulianwang': '互联网频道',
+        'shuma': '数码频道',
+        'waihui': '外汇频道',
+        'gupiao': '股票频道',
+        'qihuo': '期货频道',
+        'jijin': '基金频道',
+        'licai': '理财频道',
+        'dianying': '电影频道',
+        'dianshi': '电视频道',
+        'zongyi': '综艺频道',
+        'bagua': '八卦频道',
+        'youmo':'幽默频道',
+        'sex':'两性频道'
+    }
+    for(var k in xcp){
+        var conditions = { name: xcp[k]};
+        var options = { multi: true };
+        var update = { $set: {"type": k }};
+        ArticleBase.update(conditions,update,options,function(error){
+            if(error){
+                console.log('失败')
+                return
+            }
+        })
+        Article.update(conditions,update,options,function(error){
+            if(error){
+                console.log('失败')
+                return
+            }
+        })
+    }
+    res.json({'status':'1','prompt': '数据更新成功'})
+}
+exports.changeClass = function(req,res){
+    var typedata = ["yule", "toutiao", "junshi", "shipin", "shehui", "keji", "tiyu", "qiche", "caijing", "jiankang", "redian", "guonei", "guoji", "shishang", "lishi", "youxi", "qinggan", "jiaju", "xingzuo", "kexue", "hulianwang", "shuma", "waihui", "gupiao", "qihuo", "jijin", "licai", "dianying", "dianshi", "zongyi", "bagua",'youmo','sex',"other"];
+    var reClass = function() {
+        ArticleBase.find({}, function(err, results) {
+            if (err) {
+                res.json({ 'status': '1', 'prompt': '分类数据失败' })
+                return
+            }
+            var haha = 0 ;
+            var xcp = function(){
+                ArticleClass.find({type : results[0].type},function(err,me){
+                    if(me.length === 0){
+                        // console.log(results[0]+'无匹配')
+                        results.splice(0,1);
+                        if(results.length !== 0){
+                            xcp();
+                        }else{
+                            console.log(haha+'全部验证完毕')
+                        }
+                        return;
+                    }
+                    var conditions = { type: results[0].type },
+                    options = { multi: false };
+                    me[0].articles.push(results[0].accid);
+                    var newtotal = me[0].alltotal+1;
+                    var update = { $set: { "articles": me[0].articles, "alltotal": newtotal } };
+                    ArticleClass.update(conditions, update, options, function(err, r) {
+                        results.splice(0,1);
+                        haha++;
+                        if(results.length !== 0){
+                            xcp();
+                        }else{
+                            console.log(haha+'全部验证完毕')
+                        }
+                    });
+                })
+            }
+            xcp()
+            res.json({'status':'1','prompt':'初始化完毕,正在重刷分类数据'})
+        })
+    }
+    var reCheck = function() {
+        ArticleClass.checkSelf(typedata[0], function(err, br) {
+            if (err) return;
+            if (br) {
+                typedata.splice(0, 1);
+                if (typedata.length > 0) {
+                    reCheck();
+                }else{
+                    reClass();
+                }
+            } else {
+                ArticleClass.reclassParam(typedata[0], function(param) {
+                    var c = new ArticleClass(param);
+                    c.save(function(err) {
+                        if (err) {
+                            return;
+                        }
+                        typedata.splice(0, 1);
+                        if (typedata.length > 0) {
+                            reCheck()
+                        }else{
+                            reClass();
+                        }
+                    });
+                });
+            }
+        });
+    }
+    //删除原来分类
+    ArticleClass.remove({},function(err){
+        if(err){
+            console.log('删除原来分类失败');
+            return;
+        }
+        reCheck();
+    });
+}
+
 //音乐播放器代理接口
 exports.recommendJk = function(req,res){
     var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
