@@ -56,4 +56,4 @@ app.get("/detail/num/:id",router.showArticle); // 显示文章页
 //静态资源
 app.use("/public",express.static("public"));
 //监听
-app.listen(80);
+app.listen(8090);
